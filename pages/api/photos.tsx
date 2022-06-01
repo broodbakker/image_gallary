@@ -16,7 +16,7 @@ export const getPhotos = async (tag: string) => {
 
 export const transformBlurred = (imageName: string) => buildUrl(imageName, {
   cloud: {
-    cloudName: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
+    cloudName: process.env.CLOUDINARY_CLOUD_NAME,
   },
   transformations: {
     effect: "blur:1000",
@@ -29,7 +29,7 @@ export const transformBlurred = (imageName: string) => buildUrl(imageName, {
 
 export const transform = (imageName: string, size: number) => buildUrl(imageName, {
   cloud: {
-    cloudName: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
+    cloudName: process.env.CLOUDINARY_CLOUD_NAME,
   },
   transformations: {
     width: size,

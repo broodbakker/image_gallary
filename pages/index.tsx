@@ -7,13 +7,36 @@ import {
 //typescript
 import type { ResourceApiResponse } from "cloudinary";
 import { getPhotos } from "./api/photos"
+
+import { buildUrl } from 'cloudinary-build-url';
 //constants
 const constants = {
   maxWidth: 768,
   cloud_folder: "image_gallary",
 }
 
-import { transformBlurred, transform } from "../test"
+export const transformBlurred = (imageName: string) => buildUrl(imageName, {
+  cloud: {
+    cloudName: "dta9vptzh",
+  },
+  transformations: {
+    effect: "blur:1000",
+    type: 'scale',
+    quality: 1,
+    width: 500,
+    height: 500,
+  }
+});
+
+export const transform = (imageName: string, size: number) => buildUrl(imageName, {
+  cloud: {
+    cloudName: "dta9vptzh",
+  },
+  transformations: {
+    width: size,
+    height: size,
+  }
+});
 
 const ChakraImage = chakra(Image, {
   shouldForwardProp: (prop) => ["width", "height", "src", "alt", "layout", "priority"].includes(prop)
@@ -33,6 +56,8 @@ interface HomeInterface {
   resources: ResourceApiResponse["resources"]
 }
 
+
+
 const Home = ({ resources }: HomeInterface) => {
   const firstPhoto = resources[0].url
 
@@ -42,7 +67,6 @@ const Home = ({ resources }: HomeInterface) => {
     value,
     onChange: setValue,
   })
-
   return (
     <Box
       maxW={{ base: "100%", md: `${constants.maxWidth}` }}
@@ -51,6 +75,7 @@ const Home = ({ resources }: HomeInterface) => {
       p='2'
       rounded={{ base: "none", md: "large" }}
       boxShadow='2xl'>
+
       <AspectRatio
         ratio={4 / 3}
         w={{ base: "100%", md: "inherit" }}
@@ -68,6 +93,8 @@ const Home = ({ resources }: HomeInterface) => {
           objectFit="cover"
         />
       </AspectRatio>
+
+
       <PhotoGrid photos={resources} setMainPhoto={setMainPhoto} />
     </Box >
   )
@@ -123,6 +150,8 @@ const SinglePhoto = ({ imageLink, setMainPhoto }: Iphoto) => {
 
 export async function getStaticProps() {
   const resources = await getPhotos(constants.cloud_folder);
+
+
   return {
     props: {
       resources
