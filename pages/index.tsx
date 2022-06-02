@@ -9,13 +9,14 @@ import type { ResourceApiResponse } from "cloudinary";
 import { getPhotos } from "./api/photos"
 
 import { buildUrl } from 'cloudinary-build-url';
+
 //constants
 const constants = {
   maxWidth: 768,
   cloud_folder: "image_gallary",
 }
 
-export const transformBlurred = (imageName: string) => buildUrl(imageName, {
+const transformBlurred = (imageName: string) => buildUrl(imageName, {
   cloud: {
     cloudName: "dta9vptzh",
   },
@@ -28,7 +29,7 @@ export const transformBlurred = (imageName: string) => buildUrl(imageName, {
   }
 });
 
-export const transform = (imageName: string, size: number) => buildUrl(imageName, {
+const transform = (imageName: string, size: number) => buildUrl(imageName, {
   cloud: {
     cloudName: "dta9vptzh",
   },
@@ -37,6 +38,7 @@ export const transform = (imageName: string, size: number) => buildUrl(imageName
     height: size,
   }
 });
+
 
 const ChakraImage = chakra(Image, {
   shouldForwardProp: (prop) => ["width", "height", "src", "alt", "layout", "priority"].includes(prop)

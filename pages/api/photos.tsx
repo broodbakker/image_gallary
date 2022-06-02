@@ -2,6 +2,8 @@ import cloudinary from "cloudinary"
 
 import { buildUrl } from 'cloudinary-build-url';
 
+import fs from 'fs';
+
 cloudinary.v2.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
@@ -16,7 +18,7 @@ export const getPhotos = async (tag: string) => {
 
 export const transformBlurred = (imageName: string) => buildUrl(imageName, {
   cloud: {
-    cloudName: process.env.CLOUDINARY_CLOUD_NAME,
+    cloudName: "dta9vptzh",
   },
   transformations: {
     effect: "blur:1000",
@@ -29,7 +31,7 @@ export const transformBlurred = (imageName: string) => buildUrl(imageName, {
 
 export const transform = (imageName: string, size: number) => buildUrl(imageName, {
   cloud: {
-    cloudName: process.env.CLOUDINARY_CLOUD_NAME,
+    cloudName: "dta9vptzh",
   },
   transformations: {
     width: size,
