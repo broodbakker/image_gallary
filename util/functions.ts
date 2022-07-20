@@ -9,8 +9,8 @@ export const transformBlurred = (imageName: string) => buildUrl(imageName, {
     effect: "blur:1000",
     type: 'scale',
     quality: 1,
-    width: 500,
-    height: 500,
+    width: 100,
+    height: 100,
   }
 });
 
