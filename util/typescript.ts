@@ -13,3 +13,9 @@ export interface Iphotos {
 export interface IHome {
   resources: ResourceApiResponse["resources"]
 }
+
+export interface IHomeView {
+  mainPhoto: string
+  resources: ResourceApiResponse["resources"]
+  handleClick: (imageLink: ResourceApiResponse["resources"][0]) => void
+}
